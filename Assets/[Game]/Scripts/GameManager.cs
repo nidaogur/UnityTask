@@ -8,12 +8,19 @@ namespace _Game_.Scripts
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private Coin coinPrefab;
-        private Action<Collectable> onCollect;
-
-        public void Init(Action<Collectable> _onCollect)
+        public int currentCoin;
+        private UIManager uiManager;
+        public void Init(UIManager _uiManager)
         {
-            onCollect = _onCollect;
+            uiManager = _uiManager;
+            LoadGame();
             Spawn();
+        }
+
+        private void LoadGame()
+        {
+            currentCoin = PlayerPrefs.GetInt("CurrentCoin", 0);
+            uiManager.ScoreUpdate(currentCoin);
         }
 
         private void Spawn()
@@ -22,8 +29,26 @@ namespace _Game_.Scripts
             {
                 var coin = Instantiate(coinPrefab);
                 coin.transform.position = Vector3.forward * i;
-                coin.Init(5, onCollect); //TODO SOdan amount
+                coin.Init(500, OnCollect); //TODO SOdan amount
             }
+        }
+        
+        private void OnCollect(Collectable collectable)
+        {
+            var amount = collectable.GetAmount;
+            if (collectable is Coin)
+            { 
+                ScoreIncrease(amount);
+            }
+            
+            collectable.Destroy();
+        }
+        
+        private void ScoreIncrease(int amount)
+        {
+            currentCoin += amount;
+            PlayerPrefs.SetInt("CurrentCoin",currentCoin);
+            uiManager.ScoreUpdate(currentCoin);
         }
     }
 }
