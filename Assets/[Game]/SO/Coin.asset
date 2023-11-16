@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 761883277603026990, guid: 0c5041ddd16ecd74cada4cd024ce19ae, type: 3}
   spawnAmount: 5
-  collectAmount: 500
+  collectAmount: 20

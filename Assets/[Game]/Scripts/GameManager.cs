@@ -3,6 +3,7 @@ using _Game_.Scripts.Collectables;
 using _Game_.Scripts.Collectables.Coin;
 using _Game_.Scripts.Collectables.HealthBooster;
 using _Game_.Scripts.Collectables.LifeDrainer;
+using _Game_.Scripts.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -31,7 +32,7 @@ namespace _Game_.Scripts
         private void LoadGame()
         {
             currentCoin = PlayerPrefs.GetInt("CurrentCoin", 0);
-            uiManager.ScoreUpdate(currentCoin);
+            uiManager.ScoreBar.ScoreUpdate(currentCoin);
         }
 
         private void Spawn(CollectableSpawnSettingsSo collectableSpawnSettingsSo)
@@ -65,12 +66,12 @@ namespace _Game_.Scripts
         {
             currentCoin += amount;
             PlayerPrefs.SetInt("CurrentCoin",currentCoin);
-            uiManager.ScoreUpdate(currentCoin,collectPosition);
+            uiManager.ScoreBar.ScoreUpdate(amount,currentCoin,collectPosition);
         }
 
         private void HealthIncrease(int amount)
         {
-            uiManager.HealthBarUpdate(amount);
+            uiManager.HealthBar.HealthBarUpdate(amount);
         }
     }
 }
