@@ -6,8 +6,8 @@ namespace _Game_.Scripts
         {
             return number switch
             {
-                >= 1000 and < 1000000 => (number / 1000f).ToString("0.##") + "K",
-                >= 1000000 => (number / 1000000f).ToString("0.##") + "M",
+                >= 1000 and < 1000000 => $"{(number / 1000f):0.##}K",
+                >= 1000000 => $"{(number / 1000000f):0.##}M",
                 _ => number.ToString()
             };
         }

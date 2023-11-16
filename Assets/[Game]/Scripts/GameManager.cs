@@ -1,20 +1,31 @@
 using System;
 using _Game_.Scripts.Collectables;
 using _Game_.Scripts.Collectables.Coin;
+using _Game_.Scripts.Collectables.HealthBooster;
+using _Game_.Scripts.Collectables.LifeDrainer;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace _Game_.Scripts
 {
     public class GameManager : MonoBehaviour
-    {
-        [SerializeField] private Coin coinPrefab;
+    { 
+        [SerializeField] private CollectableSpawnSettingsSo lifeDrainer;
+        [SerializeField] private CollectableSpawnSettingsSo healthBooster; 
+        [SerializeField] private CollectableSpawnSettingsSo coin;
+        
         public int currentCoin;
+        
         private UIManager uiManager;
+        private Player.Player player;
         public void Init(UIManager _uiManager)
         {
             uiManager = _uiManager;
             LoadGame();
-            Spawn();
+            Spawn(lifeDrainer);
+            Spawn(healthBooster);
+            Spawn(coin);
         }
 
         private void LoadGame()
@@ -23,32 +34,43 @@ namespace _Game_.Scripts
             uiManager.ScoreUpdate(currentCoin);
         }
 
-        private void Spawn()
+        private void Spawn(CollectableSpawnSettingsSo collectableSpawnSettingsSo)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < collectableSpawnSettingsSo.spawnAmount; i++)
             {
-                var coin = Instantiate(coinPrefab);
-                coin.transform.position = Vector3.forward * i;
-                coin.Init(500, OnCollect); //TODO SOdan amount
+                var collectable = Instantiate(collectableSpawnSettingsSo.prefab);
+                collectable.transform.position =Vector3.Scale(Random.insideUnitSphere * 10,Vector3.right+Vector3.forward) ;
+                collectable.Init(collectableSpawnSettingsSo.collectAmount, OnCollect);
             }
         }
         
         private void OnCollect(Collectable collectable)
         {
             var amount = collectable.GetAmount;
-            if (collectable is Coin)
-            { 
-                ScoreIncrease(amount);
+            switch (collectable)
+            {
+                case Coin:
+                    ScoreIncrease(amount,collectable.transform.position);
+                    break;
+                case HealthBooster:
+                    HealthIncrease(amount);
+                    break;
+                case LifeDrainer:
+                    HealthIncrease(amount);
+                    break;
             }
-            
-            collectable.Destroy();
         }
         
-        private void ScoreIncrease(int amount)
+        private void ScoreIncrease(int amount, Vector3 collectPosition)
         {
             currentCoin += amount;
             PlayerPrefs.SetInt("CurrentCoin",currentCoin);
-            uiManager.ScoreUpdate(currentCoin);
+            uiManager.ScoreUpdate(currentCoin,collectPosition);
+        }
+
+        private void HealthIncrease(int amount)
+        {
+            uiManager.HealthBarUpdate(amount);
         }
     }
 }

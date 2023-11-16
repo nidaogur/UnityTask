@@ -8,7 +8,6 @@ namespace _Game_.Scripts.Player
       [SerializeField] private PlayerInteraction playerInteraction;
       [SerializeField] private PlayerMovement playerMovement;
       [SerializeField] private PlayerAnimation playerAnimation;
-
       public void Init()
       {
          playerAnimation.Init();

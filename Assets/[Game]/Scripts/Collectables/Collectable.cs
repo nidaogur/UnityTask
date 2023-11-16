@@ -22,10 +22,12 @@ namespace _Game_.Scripts.Collectables
             collectableInteraction.Init(Collect);
             collectableAnimation.Init();
         }
+        
 
         private void Collect()
         {
             onCollect?.Invoke(this);
+            Destroy();
         }
 
         public void Destroy()
