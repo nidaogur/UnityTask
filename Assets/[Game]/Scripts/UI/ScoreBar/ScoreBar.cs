@@ -16,7 +16,7 @@ namespace _Game_.Scripts.UI
         private int score;
         public void Init()
         {
-            cam=Camera.main;
+            cam=CameraManager.Instance.MainCamera;
             scoreBarAnimation.Init();
             coinParticle.onStop.AddListener(CoinParticleComplete);
         }
@@ -36,7 +36,7 @@ namespace _Game_.Scripts.UI
             score = currentScore;
         }
 
-        public void CoinParticleComplete() 
+        private void CoinParticleComplete() 
         {
             scoreBarAnimation.ScoreBarTween();
             ScoreUpdate(score);

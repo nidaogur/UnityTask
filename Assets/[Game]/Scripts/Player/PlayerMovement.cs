@@ -4,6 +4,7 @@ namespace _Game_.Scripts.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+       [SerializeField] private PlayerMovementData playerMovementData;
         public void Init()
         {
             
@@ -11,7 +12,10 @@ namespace _Game_.Scripts.Player
         
         public void Move(Vector2 inputVector)
         {
-            transform.position += (Vector3.right*inputVector.x+Vector3.forward*inputVector.y) * Time.deltaTime;
+            var lookDirection = (Vector3.right * inputVector.x + Vector3.forward * inputVector.y);
+            transform.forward=Vector3.Lerp(transform.forward,lookDirection,playerMovementData.rotationSpeed*Time.deltaTime);
+            transform.position += transform.forward * (Time.deltaTime * playerMovementData.movementSpeed);
+           
         }
         
     }

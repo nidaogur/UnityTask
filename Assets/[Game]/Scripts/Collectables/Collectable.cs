@@ -9,19 +9,19 @@ namespace _Game_.Scripts.Collectables
         [SerializeField] private CollectableInteraction collectableInteraction;
         [SerializeField] private CollectableAnimation collectableAnimation;
 
-        private Action<Collectable> onCollect;
-        private int amount;
-        private string poolTag;
+        private Action<Collectable> _onCollect;
+        private int _amount;
+        private string _poolTag;
         public int GetAmount
         {
-            get { return amount; }
+            get { return _amount; }
         }
 
-        public virtual void Init(int _amount, string _poolTag ,Action<Collectable> _onCollect)
+        public virtual void Init(int amount, string poolTag ,Action<Collectable> onCollect)
         {
-            poolTag = _poolTag;
-            amount = _amount;
-            onCollect = _onCollect;
+            this._poolTag = poolTag;
+            this._amount = amount;
+            this._onCollect = onCollect;
             collectableInteraction.Init(Collect);
             collectableAnimation.Init();
         }
@@ -29,13 +29,14 @@ namespace _Game_.Scripts.Collectables
 
         private void Collect()
         {
-            onCollect?.Invoke(this);
+            _onCollect?.Invoke(this);
             collectableAnimation.CollectAnimation(Destroy);
         }
 
         private void Destroy()
         {
-            GenericObjectPool.Instance.ReleasePooledObject(poolTag,this);
+            collectableAnimation.DestroyAnimation();
+            GenericObjectPool.Instance.ReleasePooledObject(_poolTag,this);
         }
     }
 }

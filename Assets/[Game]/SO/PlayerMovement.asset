@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61b071c886a4bc58f2701f0915aa348, type: 3}
-  m_Name: LifeDrainer
+  m_Script: {fileID: 11500000, guid: e0468b15383845cb962137e502d9a4d9, type: 3}
+  m_Name: PlayerMovement
   m_EditorClassIdentifier: 
-  poolTag: LifeDrainer
-  spawnAmount: 10
-  collectAmount: -10
+  rotationSpeed: 10
+  movementSpeed: 2

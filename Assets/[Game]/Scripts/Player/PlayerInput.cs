@@ -9,11 +9,11 @@ namespace _Game_.Scripts.Player
         private Camera _camera;
         private Vector3 _lastDelta;
 
-        private Action<Vector2> onDrag;
-        public void Init(Action<Vector2> _onDrag)
+        private Action<Vector2> _onDrag;
+        public void Init(Action<Vector2> onDrag)
         {
-            _camera = Camera.main;
-            onDrag = _onDrag;
+            _camera = CameraManager.Instance.MainCamera;
+                _onDrag = onDrag;
         }
         private void Update()
         {
@@ -21,7 +21,7 @@ namespace _Game_.Scripts.Player
                 return;
             
             var delta= joystick.Horizontal * _camera.transform.right + joystick.Vertical * _camera.transform.up;
-            onDrag?.Invoke(delta);
+            _onDrag?.Invoke(delta);
         }
        
     }

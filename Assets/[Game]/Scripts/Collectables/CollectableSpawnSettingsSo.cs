@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _Game_.Scripts.Collectables
 {
-    [CreateAssetMenu(fileName="CollectableSpawnSettings")]
+    [CreateAssetMenu(fileName="CollectableSpawnSettings",menuName = "SO/CollectableSpawnSettings", order = 0)]
     public class CollectableSpawnSettingsSo : ScriptableObject
     {
         public string poolTag;

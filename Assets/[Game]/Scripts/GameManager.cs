@@ -16,14 +16,11 @@ namespace _Game_.Scripts
         [SerializeField] private CollectableSpawnSettingsSo lifeDrainer;
         [SerializeField] private CollectableSpawnSettingsSo healthBooster; 
         [SerializeField] private CollectableSpawnSettingsSo coin;
-        
-        public int currentCoin;
-        
-        private UIManager uiManager;
-        private Player.Player player;
-        public void Init(UIManager _uiManager)
+        private UIManager _uiManager;
+        private Player.Player _player;
+        public void Init(UIManager uiManager)
         {
-            uiManager = _uiManager;
+            _uiManager = uiManager;
             LoadGame();
             Spawn(lifeDrainer);
             Spawn(healthBooster);
@@ -32,8 +29,7 @@ namespace _Game_.Scripts
 
         private void LoadGame()
         {
-            currentCoin = PlayerPrefs.GetInt("CurrentCoin", 0);
-            uiManager.ScoreBar.ScoreUpdate(currentCoin);
+            _uiManager.ScoreBar.ScoreUpdate(DataManager.Coin);
         }
 
         private void Spawn(CollectableSpawnSettingsSo collectableSpawnSettingsSo)
@@ -65,14 +61,13 @@ namespace _Game_.Scripts
         
         private void ScoreIncrease(int amount, Vector3 collectPosition)
         {
-            currentCoin += amount;
-            PlayerPrefs.SetInt("CurrentCoin",currentCoin);
-            uiManager.ScoreBar.ScoreUpdate(amount,currentCoin,collectPosition);
+           DataManager.Coin += amount;
+            _uiManager.ScoreBar.ScoreUpdate(amount,DataManager.Coin,collectPosition);
         }
 
         private void HealthIncrease(int amount)
         {
-            uiManager.HealthBar.HealthBarUpdate(amount);
+            _uiManager.HealthBar.HealthBarUpdate(amount);
         }
     }
 }

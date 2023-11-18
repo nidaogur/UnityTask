@@ -1,4 +1,5 @@
 using System;
+using _Game_.Scripts.Interface;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 

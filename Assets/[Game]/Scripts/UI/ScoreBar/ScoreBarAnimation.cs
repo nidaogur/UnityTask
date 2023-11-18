@@ -7,8 +7,7 @@ namespace _Game_.Scripts.UI
     public class ScoreBarAnimation : MonoBehaviour
     {
         [SerializeField] private Transform scoreBarCoinImage;
-        [SerializeField] private Ease ease;
-        [SerializeField] private float duration=.3f;
+        [SerializeField] private TweenSettingsData scoreBarTweenSettings;
         private Tweener tween;
         public void Init()
         {
@@ -17,7 +16,7 @@ namespace _Game_.Scripts.UI
         public void ScoreBarTween()
         {
             tween?.Kill();
-            tween = scoreBarCoinImage.DOScale(Vector3.one, duration).From(Vector3.one * .7f).SetEase(ease).OnComplete(() => tween = null);
+            tween = scoreBarCoinImage.DOScale(Vector3.one, scoreBarTweenSettings.duration).From(Vector3.one * .7f).SetEase(scoreBarTweenSettings.ease).OnComplete(() => tween = null);
         }
     }
 }

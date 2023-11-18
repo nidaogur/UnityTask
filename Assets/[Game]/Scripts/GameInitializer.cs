@@ -12,7 +12,12 @@ namespace _Game_.Scripts
         {
             player.Init();
             gameManager.Init(uiManager);
-            uiManager.Init();
+            uiManager.Init(GameOver);
+        }
+
+        private void GameOver()
+        {
+            Time.timeScale = 0;
         }
     }
 }

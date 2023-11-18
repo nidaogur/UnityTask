@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Game_.Scripts.UI
@@ -10,11 +11,19 @@ namespace _Game_.Scripts.UI
         [SerializeField] private ScoreBar scoreBar;
 
         public ScoreBar ScoreBar { get => scoreBar; }
+        [SerializeField] private GameObject gameOverPanel;
 
-        public void Init()
+        private Action _onHealthOver;
+        public void Init(Action onHealthOver)
         {
             scoreBar.Init();
-            healthBar.Init();
+            healthBar.Init(GameOver);
+        }
+        
+        private void GameOver()
+        {
+            gameOverPanel.SetActive(true);
+            _onHealthOver?.Invoke();
         }
         
     }

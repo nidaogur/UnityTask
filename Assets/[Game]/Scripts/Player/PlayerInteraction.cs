@@ -1,4 +1,5 @@
 using System;
+using _Game_.Scripts.Interface;
 using UnityEngine;
 
 namespace _Game_.Scripts.Player
