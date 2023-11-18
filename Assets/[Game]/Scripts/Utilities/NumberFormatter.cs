@@ -1,4 +1,4 @@
-namespace _Game_.Scripts
+namespace _Game_.Scripts.Utilities
 {
     public class NumberFormatter
     {

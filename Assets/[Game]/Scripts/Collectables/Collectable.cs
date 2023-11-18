@@ -1,4 +1,5 @@
 using System;
+using _Game_.Scripts.Utilities;
 using UnityEngine;
 
 namespace _Game_.Scripts.Collectables
@@ -10,13 +11,15 @@ namespace _Game_.Scripts.Collectables
 
         private Action<Collectable> onCollect;
         private int amount;
+        private string poolTag;
         public int GetAmount
         {
             get { return amount; }
         }
 
-        public virtual void Init(int _amount, Action<Collectable> _onCollect)
+        public virtual void Init(int _amount, string _poolTag ,Action<Collectable> _onCollect)
         {
+            poolTag = _poolTag;
             amount = _amount;
             onCollect = _onCollect;
             collectableInteraction.Init(Collect);
@@ -27,12 +30,12 @@ namespace _Game_.Scripts.Collectables
         private void Collect()
         {
             onCollect?.Invoke(this);
-            Destroy();
+            collectableAnimation.CollectAnimation(Destroy);
         }
 
-        public void Destroy()
+        private void Destroy()
         {
-            Destroy(gameObject);
+            GenericObjectPool.Instance.ReleasePooledObject(poolTag,this);
         }
     }
 }

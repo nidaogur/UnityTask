@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61b071c886a4bc58f2701f0915aa348, type: 3}
   m_Name: Coin
   m_EditorClassIdentifier: 
+  poolTag: Coin
   prefab: {fileID: 761883277603026990, guid: 0c5041ddd16ecd74cada4cd024ce19ae, type: 3}
   spawnAmount: 5
-  collectAmount: 20
+  collectAmount: 50

@@ -4,6 +4,7 @@ using _Game_.Scripts.Collectables.Coin;
 using _Game_.Scripts.Collectables.HealthBooster;
 using _Game_.Scripts.Collectables.LifeDrainer;
 using _Game_.Scripts.UI;
+using _Game_.Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -39,9 +40,9 @@ namespace _Game_.Scripts
         {
             for (int i = 0; i < collectableSpawnSettingsSo.spawnAmount; i++)
             {
-                var collectable = Instantiate(collectableSpawnSettingsSo.prefab);
-                collectable.transform.position =Vector3.Scale(Random.insideUnitSphere * 10,Vector3.right+Vector3.forward) ;
-                collectable.Init(collectableSpawnSettingsSo.collectAmount, OnCollect);
+                var collectable = GenericObjectPool.Instance.Spawn<Collectable>(collectableSpawnSettingsSo.poolTag,
+                    Vector3.Scale(Random.insideUnitSphere * 10,Vector3.right+Vector3.forward));
+                collectable.Init(collectableSpawnSettingsSo.collectAmount,collectableSpawnSettingsSo.poolTag, OnCollect);
             }
         }
         

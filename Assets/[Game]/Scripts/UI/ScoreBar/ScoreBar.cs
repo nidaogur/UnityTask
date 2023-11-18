@@ -1,3 +1,4 @@
+using _Game_.Scripts.Utilities;
 using AssetKits.ParticleImage;
 using DG.Tweening;
 using TMPro;
@@ -7,14 +8,17 @@ namespace _Game_.Scripts.UI
 {
     public class ScoreBar : MonoBehaviour
     {
+        [SerializeField] private ScoreBarAnimation scoreBarAnimation;
         [SerializeField] private ParticleImage coinParticle;
         [SerializeField] private TMP_Text scoreText;
-        
+        [SerializeField] private int maxParticle;
         private Camera cam;
         private int score;
         public void Init()
         {
             cam=Camera.main;
+            scoreBarAnimation.Init();
+            coinParticle.onStop.AddListener(CoinParticleComplete);
         }
         public void ScoreUpdate(int scoreValue)
         {
@@ -26,15 +30,16 @@ namespace _Game_.Scripts.UI
         {
             var pos = cam.WorldToScreenPoint(position);
             coinParticle.transform.position = pos;
+            if (amount > maxParticle) amount = maxParticle;
             coinParticle.rateOverTime = amount;
             coinParticle.Play();
             score = currentScore;
         }
 
-        public void ScoreTextUpdate()
+        public void CoinParticleComplete() 
         {
-            var formattedScore = NumberFormatter.FormatNumber(score);
-            scoreText.text = formattedScore;
+            scoreBarAnimation.ScoreBarTween();
+            ScoreUpdate(score);
         }
     }
 }

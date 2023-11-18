@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61b071c886a4bc58f2701f0915aa348, type: 3}
   m_Name: HealthBooster
   m_EditorClassIdentifier: 
+  poolTag: HealthBooster
   prefab: {fileID: 1734702727080953290, guid: cdd0e0a50ed3b05489cf9a7046c057bd, type: 3}
   spawnAmount: 10
   collectAmount: 5

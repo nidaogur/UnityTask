@@ -259,7 +259,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &152286437
 GameObject:
@@ -291,8 +291,9 @@ Transform:
   m_Children:
   - {fileID: 1027202320}
   - {fileID: 1802273898}
+  - {fileID: 962633803}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &195771749
 GameObject:
@@ -393,7 +394,7 @@ RectTransform:
   - {fileID: 2020648413}
   - {fileID: 759672063}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -456,7 +457,6 @@ GameObject:
   - component: {fileID: 333668641}
   - component: {fileID: 333668643}
   - component: {fileID: 333668642}
-  - component: {fileID: 333668644}
   m_Layer: 0
   m_Name: CoinImage
   m_TagString: Untagged
@@ -524,27 +524,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333668640}
   m_CullTransparentMesh: 1
---- !u!95 &333668644
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333668640}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 42f865361014b1a4e9276587881f7b7b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &355115650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,31 +2027,7 @@ MonoBehaviour:
       m_Calls: []
   _onStop:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 759672064}
-        m_TargetAssemblyTypeName: _Game_.Scripts.UI.ScoreBar, Assembly-CSharp
-        m_MethodName: ScoreTextUpdate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 333668644}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Play
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   moduleEmitterFoldout: 1
   moduleParticleFoldout: 1
   moduleMovementFoldout: 1
@@ -2198,7 +2153,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &718602287
 GameObject:
@@ -2223,7 +2178,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718602287}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2246,6 +2201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 759672063}
   - component: {fileID: 759672064}
+  - component: {fileID: 759672065}
   m_Layer: 5
   m_Name: ScoreBar
   m_TagString: Untagged
@@ -2287,8 +2243,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67081a9d1a134c2fb2fcdc8de76beebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreBarAnimation: {fileID: 759672065}
   coinParticle: {fileID: 611072983}
   scoreText: {fileID: 1140019554}
+  maxParticle: 10
+--- !u!114 &759672065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759672062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627f1894dd2ff614d96882444ce2f1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreBarCoinImage: {fileID: 333668641}
+  ease: 26
+  duration: 0
+--- !u!1 &962633802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 962633803}
+  - component: {fileID: 962633804}
+  m_Layer: 0
+  m_Name: ObjectPooling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &962633803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962633802}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 152286438}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &962633804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962633802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 145e0442e68530841988cb993e091aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptPools:
+  - tag: Coin
+    prefab: {fileID: 761883277603026990, guid: 0c5041ddd16ecd74cada4cd024ce19ae, type: 3}
+    softCap: 5
+    hardCap: 10
+    createAtStart: 0
+  - tag: HealthBooster
+    prefab: {fileID: 1734702727080953290, guid: cdd0e0a50ed3b05489cf9a7046c057bd, type: 3}
+    softCap: 5
+    hardCap: 10
+    createAtStart: 0
+  - tag: LifeDrainer
+    prefab: {fileID: 8725218434037303666, guid: fcbd1abccf9dad04d8d4bc8ced684fb7, type: 3}
+    softCap: 5
+    hardCap: 10
+    createAtStart: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,7 +2579,7 @@ Transform:
   - {fileID: 1270694003}
   - {fileID: 314627789}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &987389948
 GameObject:
@@ -2614,7 +2647,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1007931237
 GameObject:
@@ -2964,11 +2997,11 @@ RectTransform:
   m_Father: {fileID: 333668641}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 208.20932, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 248.20935, y: -0.00024414062}
   m_SizeDelta: {x: 230, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!1 &1270694002
 GameObject:
   m_ObjectHideFlags: 0
@@ -3064,7 +3097,7 @@ MonoBehaviour:
   lifeDrainer: {fileID: 11400000, guid: e291c9c9c5ab73945ba9d40d39ef161e, type: 2}
   healthBooster: {fileID: 11400000, guid: 87c456069904ce34a86fe485e96cea1f, type: 2}
   coin: {fileID: 11400000, guid: 4fa44e8edfe4f394fb98ab137aba8b9a, type: 2}
-  currentCoin: 0
+  currentCoin: 100
 --- !u!1001 &1912764327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3176,6 +3209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2020648413}
   - component: {fileID: 2020648414}
+  - component: {fileID: 2020648415}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -3216,8 +3250,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2204e36c871b4ef484e53f49df728537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1047117100}
+  healthBarAnimation: {fileID: 2020648415}
   maxHealth: 100
+--- !u!114 &2020648415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020648412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507559a5e3894075810108212d63c678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 1047117100}
+  startColor: {r: 1, g: 0, b: 0, a: 1}
+  endColor: {r: 0, g: 1, b: 0, a: 1}
+  colorCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.387909
+      value: 0.13180567
+      inSlope: 1.1635678
+      outSlope: 1.1635678
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.676823
+      value: 0.9038108
+      inSlope: 0.983197
+      outSlope: 0.983197
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2047500810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3288,7 +3379,7 @@ Transform:
   m_Children:
   - {fileID: 1007931238}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047696599
 GameObject:

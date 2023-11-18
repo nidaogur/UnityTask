@@ -1,12 +1,11 @@
-using _Game_.Scripts.Collectables;
 using UnityEngine;
 
-namespace _Game_.Scripts
+namespace _Game_.Scripts.Collectables
 {
     [CreateAssetMenu(fileName="CollectableSpawnSettings")]
     public class CollectableSpawnSettingsSo : ScriptableObject
     {
-        public Collectable prefab;
+        public string poolTag;
         public int spawnAmount;
         public int collectAmount;
     }

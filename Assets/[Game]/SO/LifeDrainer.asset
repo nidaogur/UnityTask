@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61b071c886a4bc58f2701f0915aa348, type: 3}
   m_Name: LifeDrainer
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8725218434037303666, guid: fcbd1abccf9dad04d8d4bc8ced684fb7, type: 3}
+  poolTag: LifeDrainer
   spawnAmount: 10
-  collectAmount: 5
+  collectAmount: -20
