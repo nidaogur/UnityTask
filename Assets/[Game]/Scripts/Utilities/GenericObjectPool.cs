@@ -29,7 +29,7 @@ namespace _Game_.Scripts.Utilities
 
         #endregion
 
-        private void Awake()
+        public void Awake()
         {
             Initialize();
             CreateAtStart();

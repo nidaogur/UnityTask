@@ -16,6 +16,7 @@ namespace _Game_.Scripts
         [SerializeField] private CollectableSpawnSettingsSo lifeDrainer;
         [SerializeField] private CollectableSpawnSettingsSo healthBooster;
         [SerializeField] private CollectableSpawnSettingsSo coin;
+        
         private UIManager _uiManager;
         private Player.Player _player;
 
@@ -23,15 +24,10 @@ namespace _Game_.Scripts
         {
             _uiManager = uiManager;
             _player = player;
-            LoadGame();
+            
             Spawn(lifeDrainer);
             Spawn(healthBooster);
             Spawn(coin);
-        }
-
-        private void LoadGame()
-        {
-            _uiManager.ScoreBar.ScoreUpdate(DataManager.Coin);
         }
 
         private void Spawn(CollectableSpawnSettingsSo collectableSpawnSettingsSo)
@@ -41,6 +37,7 @@ namespace _Game_.Scripts
                 var collectable = GenericObjectPool.Instance.Spawn<Collectable>(collectableSpawnSettingsSo.poolTag,
                     Vector3.Scale(Random.insideUnitSphere * collectableSpawnSettingsSo.spawnRadius,
                         Vector3.right + Vector3.forward));
+                
                 collectable.Init(collectableSpawnSettingsSo.collectAmount, collectableSpawnSettingsSo.poolTag,
                     OnCollect);
             }

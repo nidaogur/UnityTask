@@ -18,6 +18,7 @@ namespace _Game_.Scripts.UI
         {
             scoreBar.Init();
             healthBar.Init(playerData);
+           
         }
         
         public void GameOver()

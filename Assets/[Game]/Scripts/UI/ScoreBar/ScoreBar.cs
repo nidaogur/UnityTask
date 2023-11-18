@@ -19,6 +19,7 @@ namespace _Game_.Scripts.UI
             cam=CameraManager.Instance.MainCamera;
             scoreBarAnimation.Init();
             coinParticle.onStop.AddListener(CoinParticleComplete);
+            ScoreUpdate(DataManager.Coin);
         }
         public void ScoreUpdate(int scoreValue)
         {

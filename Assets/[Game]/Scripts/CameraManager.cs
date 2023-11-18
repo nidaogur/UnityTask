@@ -29,13 +29,13 @@ namespace _Game_.Scripts
 
 		private Coroutine shakeCoroutine;
 
-		private void Awake()
+		public void Awake()
 		{
 			perlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 			perlin.m_AmplitudeGain = 0;
 		}
 
-		private void OnDisable()
+		public void OnDisable()
 		{
 			shakeTimer = 0;
 			perlin.m_AmplitudeGain = 0;

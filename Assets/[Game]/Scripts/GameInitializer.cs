@@ -1,4 +1,6 @@
+using System;
 using _Game_.Scripts.UI;
+using _Game_.Scripts.Utilities;
 using UnityEngine;
 
 namespace _Game_.Scripts
@@ -8,11 +10,13 @@ namespace _Game_.Scripts
         [SerializeField] private Player.Player player;
         [SerializeField] private GameManager gameManager;
         [SerializeField] private UIManager uiManager;
+
         private void Start()
         {
-            player.Init(); 
+            player.Init();
             uiManager.Init(player.GetPlayerData());
             gameManager.Init(uiManager,player);
+           
            
         }
     }

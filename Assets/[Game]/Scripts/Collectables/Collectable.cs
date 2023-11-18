@@ -12,20 +12,21 @@ namespace _Game_.Scripts.Collectables
         private Action<Collectable> _onCollect;
         private int _amount;
         private string _poolTag;
+
         public int GetAmount
         {
             get { return _amount; }
         }
 
-        public virtual void Init(int amount, string poolTag ,Action<Collectable> onCollect)
+        public virtual void Init(int amount, string poolTag, Action<Collectable> onCollect)
         {
-            this._poolTag = poolTag;
-            this._amount = amount;
-            this._onCollect = onCollect;
+            _poolTag = poolTag;
+            _amount = amount;
+            _onCollect = onCollect;
             collectableInteraction.Init(Collect);
             collectableAnimation.Init();
         }
-        
+
 
         private void Collect()
         {
@@ -36,7 +37,7 @@ namespace _Game_.Scripts.Collectables
         private void Destroy()
         {
             collectableAnimation.DestroyAnimation();
-            GenericObjectPool.Instance.ReleasePooledObject(_poolTag,this);
+            GenericObjectPool.Instance.ReleasePooledObject(_poolTag, this);
         }
     }
 }
