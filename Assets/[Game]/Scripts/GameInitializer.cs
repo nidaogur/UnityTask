@@ -11,13 +11,8 @@ namespace _Game_.Scripts
         private void Start()
         {
             player.Init();
-            gameManager.Init(uiManager);
-            uiManager.Init(GameOver);
-        }
-
-        private void GameOver()
-        {
-            Time.timeScale = 0;
+            gameManager.Init(uiManager,player);
+            uiManager.Init(player.GetPlayerData());
         }
     }
 }

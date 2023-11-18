@@ -1,4 +1,6 @@
 using System;
+using _Game_.Scripts.Player;
+using TMPro;
 using UnityEngine;
 
 namespace _Game_.Scripts.UI
@@ -12,18 +14,15 @@ namespace _Game_.Scripts.UI
 
         public ScoreBar ScoreBar { get => scoreBar; }
         [SerializeField] private GameObject gameOverPanel;
-
-        private Action _onHealthOver;
-        public void Init(Action onHealthOver)
+        public void Init(PlayerData playerData)
         {
             scoreBar.Init();
-            healthBar.Init(GameOver);
+            healthBar.Init(playerData);
         }
         
-        private void GameOver()
+        public void GameOver()
         {
             gameOverPanel.SetActive(true);
-            _onHealthOver?.Invoke();
         }
         
     }

@@ -1,5 +1,7 @@
 using System;
+using _Game_.Scripts.Player;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,26 +10,19 @@ namespace _Game_.Scripts.UI
     public class HealthBar : MonoBehaviour
     {
         [SerializeField] private HealthBarAnimation healthBarAnimation;
-        
-        [SerializeField] private int maxHealth=100;
-        private int _currentHealth;
-        private Action _onHealthOver;
-        public void Init(Action onHealthOver)
+
+        [SerializeField] private TMP_Text nameText;
+        private int _maxHealth;
+        public void Init(PlayerData playerData)
         {
             healthBarAnimation.Init();
-            _currentHealth = maxHealth;
-            HealthBarUpdate(_currentHealth);
-            _onHealthOver = onHealthOver;
+            _maxHealth = playerData.playerHealth;
+            nameText.text = playerData.playerName;
+            HealthBarUpdate(_maxHealth);
         }
-        public void HealthBarUpdate(int amount)
+        public void HealthBarUpdate(int currentHealth)
         {
-            _currentHealth += amount;
-            _currentHealth=   Mathf.Clamp(_currentHealth, 0, 100);
-            healthBarAnimation.HealthBarTween(_currentHealth,maxHealth);
-            if (_currentHealth <= 0)
-            {
-                _onHealthOver?.Invoke();
-            }
+            healthBarAnimation.HealthBarTween(currentHealth,_maxHealth);
         }
     }
 }

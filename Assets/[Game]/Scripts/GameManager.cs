@@ -18,9 +18,10 @@ namespace _Game_.Scripts
         [SerializeField] private CollectableSpawnSettingsSo coin;
         private UIManager _uiManager;
         private Player.Player _player;
-        public void Init(UIManager uiManager)
+        public void Init(UIManager uiManager, Player.Player player)
         {
             _uiManager = uiManager;
+            _player = player;
             LoadGame();
             Spawn(lifeDrainer);
             Spawn(healthBooster);
@@ -67,7 +68,17 @@ namespace _Game_.Scripts
 
         private void HealthIncrease(int amount)
         {
-            _uiManager.HealthBar.HealthBarUpdate(amount);
+            var health = _player.UpdateHealth(amount);
+            _uiManager.HealthBar.HealthBarUpdate(health);
+            if (health <= 0)
+            {
+                GameOver();
+            }
+        }
+
+        private void GameOver()
+        {
+            _uiManager.GameOver();
         }
     }
 }
