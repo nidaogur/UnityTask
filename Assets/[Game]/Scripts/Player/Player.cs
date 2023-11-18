@@ -2,21 +2,27 @@ using UnityEngine;
 
 namespace _Game_.Scripts.Player
 {
+   [RequireComponent(typeof(IPlayerMove))]
+   [RequireComponent(typeof(IPlayerInput))]
    public class Player : MonoBehaviour
    {
-      [SerializeField] private PlayerInput playerInput;
       [SerializeField] private PlayerInteraction playerInteraction;
-      [SerializeField] private PlayerMovement playerMovement;
       [SerializeField] private PlayerAnimation playerAnimation;
       [SerializeField] private PlayerHealth playerHealth;
       [SerializeField] private PlayerData playerData;
+      private IPlayerMove playerMovement;
+       private IPlayerInput playerInput;
       public void Init()
       {
+         playerMovement = GetComponent<IPlayerMove>();
+         playerInput = GetComponent<IPlayerInput>();
+         
          playerAnimation.Init();
+         playerMovement.Init();
          playerInput.Init(playerMovement.Move);
          playerInteraction.Init();
          playerHealth.Init(playerData);
-         playerMovement.Init();
+       
       }
 
       public PlayerData GetPlayerData()

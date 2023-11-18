@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _Game_.Scripts.Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerTransformBasedMovement : MonoBehaviour,IPlayerMove
     {
        [SerializeField] private PlayerMovementData playerMovementData;
         public void Init()
