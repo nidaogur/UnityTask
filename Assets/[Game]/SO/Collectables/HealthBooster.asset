@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HealthBooster
   m_EditorClassIdentifier: 
   poolTag: HealthBooster
-  prefab: {fileID: 1734702727080953290, guid: cdd0e0a50ed3b05489cf9a7046c057bd, type: 3}
-  spawnAmount: 10
+  spawnAmount: 12
   collectAmount: 5
+  spawnRadius: 15

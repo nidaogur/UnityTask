@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Coin
   m_EditorClassIdentifier: 
   poolTag: Coin
-  prefab: {fileID: 761883277603026990, guid: 0c5041ddd16ecd74cada4cd024ce19ae, type: 3}
-  spawnAmount: 5
+  spawnAmount: 12
   collectAmount: 50
+  spawnRadius: 15

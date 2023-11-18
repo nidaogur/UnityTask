@@ -31,7 +31,7 @@ namespace _Game_.Scripts.Collectables
                 idleAnimationTweenSettings.minMaxDelay.y));
             seq.Append(transform.DOLocalMoveY(transform.localPosition.y + idleAnimationTweenSettings.heightAmount,
                 idleAnimationTweenSettings.duration));
-            seq.Join(transform.DORotate(Vector3.up * 180, idleAnimationTweenSettings.duration,
+            seq.Join(transform.DORotate(Vector3.up * 360, idleAnimationTweenSettings.duration,
                 idleAnimationTweenSettings.rotateMode));
             seq.SetLoops(-1, idleAnimationTweenSettings.loopType);
             seq.Play();

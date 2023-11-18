@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: LifeDrainer
   m_EditorClassIdentifier: 
   poolTag: LifeDrainer
-  spawnAmount: 10
+  spawnAmount: 12
   collectAmount: -10
+  spawnRadius: 15
