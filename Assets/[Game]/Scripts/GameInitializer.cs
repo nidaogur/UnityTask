@@ -10,9 +10,10 @@ namespace _Game_.Scripts
         [SerializeField] private UIManager uiManager;
         private void Start()
         {
-            player.Init();
-            gameManager.Init(uiManager,player);
+            player.Init(); 
             uiManager.Init(player.GetPlayerData());
+            gameManager.Init(uiManager,player);
+           
         }
     }
 }

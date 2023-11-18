@@ -12,12 +12,13 @@ using Random = UnityEngine.Random;
 namespace _Game_.Scripts
 {
     public class GameManager : MonoBehaviour
-    { 
+    {
         [SerializeField] private CollectableSpawnSettingsSo lifeDrainer;
-        [SerializeField] private CollectableSpawnSettingsSo healthBooster; 
+        [SerializeField] private CollectableSpawnSettingsSo healthBooster;
         [SerializeField] private CollectableSpawnSettingsSo coin;
         private UIManager _uiManager;
         private Player.Player _player;
+
         public void Init(UIManager uiManager, Player.Player player)
         {
             _uiManager = uiManager;
@@ -38,18 +39,20 @@ namespace _Game_.Scripts
             for (int i = 0; i < collectableSpawnSettingsSo.spawnAmount; i++)
             {
                 var collectable = GenericObjectPool.Instance.Spawn<Collectable>(collectableSpawnSettingsSo.poolTag,
-                    Vector3.Scale(Random.insideUnitSphere * 10,Vector3.right+Vector3.forward));
-                collectable.Init(collectableSpawnSettingsSo.collectAmount,collectableSpawnSettingsSo.poolTag, OnCollect);
+                    Vector3.Scale(Random.insideUnitSphere * collectableSpawnSettingsSo.spawnRadius,
+                        Vector3.right + Vector3.forward));
+                collectable.Init(collectableSpawnSettingsSo.collectAmount, collectableSpawnSettingsSo.poolTag,
+                    OnCollect);
             }
         }
-        
+
         private void OnCollect(Collectable collectable)
         {
             var amount = collectable.GetAmount;
             switch (collectable)
             {
                 case Coin:
-                    ScoreIncrease(amount,collectable.transform.position);
+                    ScoreIncrease(amount, collectable.transform.position);
                     break;
                 case HealthBooster:
                     HealthIncrease(amount);
@@ -59,11 +62,11 @@ namespace _Game_.Scripts
                     break;
             }
         }
-        
+
         private void ScoreIncrease(int amount, Vector3 collectPosition)
         {
-           DataManager.Coin += amount;
-            _uiManager.ScoreBar.ScoreUpdate(amount,DataManager.Coin,collectPosition);
+            DataManager.Coin += amount;
+            _uiManager.ScoreBar.ScoreUpdate(amount, DataManager.Coin, collectPosition);
         }
 
         private void HealthIncrease(int amount)

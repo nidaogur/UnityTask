@@ -8,5 +8,6 @@ namespace _Game_.Scripts.Collectables
         public string poolTag;
         public int spawnAmount;
         public int collectAmount;
+        public float spawnRadius = 12f;
     }
 }
